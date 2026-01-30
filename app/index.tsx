@@ -8,7 +8,6 @@ export default function AuthGate() {
   useEffect(() => {
     (async () => {
 
-      
         router.replace("/(stack)/login");
       
     })();
