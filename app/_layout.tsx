@@ -5,30 +5,26 @@ import "./global.css";
 
 SplashScreen.preventAutoHideAsync();
 
-const RootLayout = () => {
-    const [fontsLoaded, error] = useFonts({
-        'OpenSans-Bold': require('../assets/fonts/OpenSans-Bold.ttf'),
-        'OpenSans-Light': require('../assets/fonts/OpenSans-Light.ttf'),
-        'OpenSans-Medium': require('../assets/fonts/OpenSans-Medium.ttf'),
-    });
-    
-    useEffect(() => {
-      if (error) throw error;
+export default function RootLayout() {
+  const [fontsLoaded, error] = useFonts({
+    "OpenSans-Bold": require("../assets/fonts/OpenSans-Bold.ttf"),
+    "OpenSans-Light": require("../assets/fonts/OpenSans-Light.ttf"),
+    "OpenSans-Medium": require("../assets/fonts/OpenSans-Medium.ttf"),
+  });
 
-      if (fontsLoaded) SplashScreen.hideAsync();
-     
-    }, [fontsLoaded, error]);
-    
-    if (!fontsLoaded && !error) return null;
+  useEffect(() => {
+    if (error) throw error;
+    if (fontsLoaded) SplashScreen.hideAsync();
+  }, [fontsLoaded, error]);
 
-    return (
-      <Stack
-        screenOptions={{
-          animation: "slide_from_right",
-          headerShown: false,
-        }}
-      />
-    );
+  if (!fontsLoaded) return null;
+
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        animation: "slide_from_right",
+      }}
+    />
+  );
 }
-
-export default RootLayout
